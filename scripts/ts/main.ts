@@ -42,6 +42,7 @@ const animales: Array<Animal> = new Array<Animal>();
 
 function init():void {
     $(document).ready(() => {
+
         $("#main-h1").text("Loading...")
         $(".blackout").show()
         
@@ -72,6 +73,7 @@ function init():void {
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit a magni officiis dolore deleniti? Modi, vel? Rem delectus perferendis quos dolorum? Saepe quo numquam ratione ipsa provident impedit vitae maxime.
                     </div>
                 </div>`;
+                $("#container").html(template);
                 // const cardImg: HTMLImageElement = $("#card-1 .card-img-top").get(i) as HTMLImageElement;
                 // cardImg.src = images[i];
             }

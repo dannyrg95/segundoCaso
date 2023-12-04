@@ -43,7 +43,7 @@
         </div>
 
         <div class="row">
-            <div class="col-6">
+            <div class="col-6" id="container">
                 <div id="card-1" class="card">
                     <img class="card-img-top" alt="">
                     <div class="card-body"></div>
