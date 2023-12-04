@@ -58,3 +58,34 @@ ul li {
 a:hover {
     text-decoration: none !important;
 }
+
+
+#container {
+    margin: 5rem auto !important;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-direction: column;
+}
+
+button {
+    outline: none;
+    border: none;
+    padding: .5em 2.4em;
+    background-color: #DBD56E;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px !important;
+}
+
+#card-1 {
+    padding: 1em 2em;
+}
+
+.card-title {
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+}
