@@ -1,0 +1,29 @@
+input[type=text], input[type=email], input[type=password] {
+    margin: 5px 0 5px 5px;
+    border-radius: 10px;
+    border: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+input[type=email] {
+    width: 250px;
+    background-image: url('../images/icons/email.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    background-size: 15px 15px;
+}
+
+input:invalid {
+    box-shadow: 0px 0px 5px 1px red;
+}
+
+input:focus:invalid {
+    box-shadow: 0px 0px 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+fieldset {
+    border: 0;
+}
