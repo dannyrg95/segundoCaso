@@ -16,19 +16,19 @@
     <header class="header-animal">
         <ul class="list-items-animal">
             <li class="item-animal">
-                <a href="">Mamifero</a>
+                <button onclick="init('MAMIFEROS')">Mamifero</button>
             </li>
             <li class="item-animal">
-                <a href="">Pez</a>
+                <button onclick="init('PECES')">Pez</button>
             </li>
             <li class="item-animal">
-                <a href="">Ave</a>
+                <button onclick="init('AVES')">Ave</button>
             </li>
             <li class="item-animal">
-                <a href="">Reptiles</a>
+                <button onclick="init('REPTILES')">Reptiles</button>
             </li>
             <li class="item-animal">
-                <a href="">Anfibios</a>
+                <button onclick="init('ANFIBIOS')">Anfibios</button>
             </li>
         </ul>
     </header>
@@ -44,24 +44,11 @@
 
         <div class="row">
             <div class="col-6" id="container">
-                <div id="card-1" class="card">
-                    <img class="card-img-top" alt="">
-                    <div class="card-body"></div>
-                    <div class="card-title">
-                        Iguana
-                    </div>
-                    <div class="card-text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit a magni officiis dolore deleniti? Modi, vel? Rem delectus perferendis quos dolorum? Saepe quo numquam ratione ipsa provident impedit vitae maxime.
-                    </div>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="card"></div>
             </div>
         </div>
     </div>
-    <script>
-        init()
-    </script>
 </body>
+<script>
+    init("ANFIBIOS")
+</script>
 </html>

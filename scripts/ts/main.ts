@@ -3,12 +3,18 @@ enum Especies {
     AVES,
     REPTILES,
     ANFIBIOS,
-    PECES
+    PECES,
+    
 }
 
 
 interface TAnimal {
     especie: Especies;
+}
+interface AnimalJSON {
+    especie: Especies;
+    imagen: string,
+    nombre: string
 }
 
 
@@ -37,49 +43,66 @@ class Animal implements TAnimal {
 }
 
 
+async function request(animal: string):Promise<Array<AnimalJSON>> {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: "/leccion-11/api/rest/userApi.php",
+            method: "POST",
+            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            data: "animales=1&especie=" + encodeURIComponent(animal)
+        }).done(function(response) {
+            resolve(JSON.parse(response));
 
-const animales: Array<Animal> = new Array<Animal>();
+        }).fail(function(error) {
+            console.error("Error en la solicitud AJAX:", error);
+            reject(error);
+        });
+    })
+}
+ 
 
-function init():void {
+
+async function init(especie: keyof typeof Especies):Promise<void> {
     $(document).ready(() => {
+        const animales: Array<Animal> = new Array<Animal>();
 
         $("#main-h1").text("Loading...")
         $(".blackout").show()
-        
-        setTimeout(() => {
-            const images: Array<string> = new Array<string>();
-            const type:string = "";
-            const imageName:string = "";
-            const especie:Especies = Especies.ANFIBIOS;
 
-            //Hacer los if's para los tipos de animales y traer los datos de la base de datos
-            for (let i = 0; i < 6; i++) {
-                animales.push(new Animal(especie, `/leccion-11/images/animales/${type}/${imageName}-${i + 1}`, "algo"));
-                images.push(`/leccion-11/images/animales/${type}/${imageName}-${i + 1}`);
+        setTimeout(async () => {
+            const images: Array<string> = new Array<string>();
+
+            const result: Array<AnimalJSON> = await request(especie);
+
+            for (let i = 0; i < result.length; i++) {
+                animales.push(new Animal(result[i].especie, result[i].imagen, result[i].nombre));
+                images.push(result[i].imagen);
             }
             
-            preload(images);
-            
 
-            for (let i = 0; i < 6; i++) {
-                const template:string = `
+            preload(images);
+            let template: string = "";
+            for (let i = 0; i < animales.length; i++) {
+                template += `
                 <div id="card-1" class="card">
                     <img class="card-img-top" alt="" src="${images[i]}">
                     <div class="card-body"></div>
                     <div class="card-title">
-                        
+                        ${animales[i].getNombre()}
                     </div>
                     <div class="card-text">
                         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugit a magni officiis dolore deleniti? Modi, vel? Rem delectus perferendis quos dolorum? Saepe quo numquam ratione ipsa provident impedit vitae maxime.
                     </div>
                 </div>`;
-                $("#container").html(template);
                 // const cardImg: HTMLImageElement = $("#card-1 .card-img-top").get(i) as HTMLImageElement;
                 // cardImg.src = images[i];
             }
-            
-            $("#main-h1").text("Loaded");
+            console.log(template)
+
+            $("#container").html(template);
+            $("#main-h1").hide();
             $(".blackout").hide();
+            // location.reload();
         }, 0)
     })
 
